@@ -12,6 +12,7 @@ class GetArticlesFailureWidget extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
+            // reloading the articles after failure
             ArticleCubit.get(context).getArticlesFromApi();
           },
           child: Column(

@@ -16,11 +16,17 @@ class SingleArticleTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 15,
+      // display the image title of article
       leading: SingleArticleTileLeading(media: article.media!),
+      // display the Arrow at the end of the tile
       trailing: const SingleArticleTileTrailing(),
+      // display the title of the article
       title: SingleArticleTileTitle(title: article.title!),
+      // display the by whom and the published date of the article
       subtitle: SingleArticleTileSubtitle(
           byline: article.byline!, publishedDate: article.published_date!),
+      // navigate to the single article page taking the whole data of
+      // the article with us
       onTap: () {
         Navigator.push(
           context,

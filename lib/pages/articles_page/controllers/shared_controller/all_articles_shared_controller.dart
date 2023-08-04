@@ -8,31 +8,45 @@ import 'package:n_y_t_articles/pages/articles_page/views/all_articles_view/compo
 import '../../models/article_model/article_model.dart';
 
 class AllArticlesSharedController {
+  // this function returns the loading widget
   static Widget getWidgetOnGetArticlesLoading() {
+    // get the loader widget from the app constants class
     return AppConstants.loader;
   }
 
+  //this function returns the success widget
   static Widget getWidgetOnGetArticlesSuccess(List<ArticleModel>? articles) {
+    // if the articles list is empty
     if (articles!.isEmpty) return const EmptyArticlesList();
+    // if the articles list is not empty
     return AllArticlesList(articles: articles);
   }
 
+  //this function returns the failure widget
   static Widget getWidgetOnGetArticlesFailed() {
     return const GetArticlesFailureWidget();
   }
 
+  // this function returns list of Icon widgets that will display in the action part
+  // of the articles app bar
   static List<Widget>? articlesAppBarActions(BuildContext context) {
     return [
       singleAppBarAction(
-          ArticlesAppBarController.get(context).flag
-              ? Icons.search_off
-              : Icons.search, () {
-        ArticlesAppBarController.get(context, listen: false).toggleFlag();
-      }),
+        // determining the icon of search button
+        ArticlesAppBarController.get(context).showHideSearchBarFlag
+            ? Icons.search_off
+            : Icons.search,
+        () {
+          // toggle the flag to show or hide the search bar and to change the
+          // icon of search button
+          ArticlesAppBarController.get(context, listen: false).toggleFlag();
+        },
+      ),
       singleAppBarAction(Icons.more_vert, () {}),
     ];
   }
 
+  // this functions returns a custom Icon widget
   static Widget singleAppBarAction(IconData? icon, void Function()? onPressed) {
     return IconButton(
       onPressed: onPressed,
@@ -49,7 +63,8 @@ class AllArticlesSharedController {
     );
   }
 
-  static TextStyle? articlesSubtitleTextStyle() {
+  // this function returns the text style of the article tile subtitle
+  static TextStyle? articlesTileSubtitleTextStyle() {
     return const TextStyle(color: Colors.grey, fontSize: 12);
   }
 }

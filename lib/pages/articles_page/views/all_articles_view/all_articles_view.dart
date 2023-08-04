@@ -14,10 +14,12 @@ class AllArticlesView extends StatefulWidget {
 }
 
 class _AllArticlesViewState extends State<AllArticlesView> {
+  // this is the widget that will display in the body of all article view
   Widget displayedWidget = AppConstants.loader;
 
   @override
   void initState() {
+    // calling the function that will get articles from api
     ArticleCubit.get(context).getArticlesFromApi();
     super.initState();
   }
@@ -29,8 +31,8 @@ class _AllArticlesViewState extends State<AllArticlesView> {
       scaffoldKey:
           ArticlesAppBarController.get(context).getAllArticlesScaffoldKey(),
       leadingAction: () {
+        // the function to display the drawer
         ArticlesAppBarController.get(context, listen: false).displayDrawer();
-        // Scaffold.of(context).openDrawer();
       },
       appBarTitle: 'NY Times Most Popular',
       actionsOfAppBar:
@@ -38,13 +40,16 @@ class _AllArticlesViewState extends State<AllArticlesView> {
       scaffoldBody: BlocConsumer<ArticleCubit, ArticleState>(
         listener: (context, state) {
           if (state is GetArticleLoading) {
+            // assign the loading widget to the displayed widget from the All Articles Controller when the loading state
             displayedWidget =
                 AllArticlesSharedController.getWidgetOnGetArticlesLoading();
           } else if (state is GetArticleSuccess) {
+            // assign the success widget from the All Articles Controller  to the displayed widget when the success state
             displayedWidget =
                 AllArticlesSharedController.getWidgetOnGetArticlesSuccess(
                     state.articles);
           } else if (state is GetArticleFailure) {
+            // assign the Failure widget from the All Articles Controller  to the displayed widget when the failure state
             displayedWidget =
                 AllArticlesSharedController.getWidgetOnGetArticlesFailed();
           }

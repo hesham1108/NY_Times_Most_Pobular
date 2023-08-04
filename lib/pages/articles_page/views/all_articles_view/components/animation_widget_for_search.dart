@@ -12,7 +12,7 @@ class AnimationWidgetForSearch extends StatelessWidget {
       reverseDuration: const Duration(milliseconds: 500),
       curve: Curves.easeIn,
       alignment: Alignment.centerLeft,
-      child: ArticlesAppBarController.get(context).currentAppBarWidget,
+      child: ArticlesAppBarController.get(context).currentSearchBarWidget,
     );
   }
 }

@@ -24,18 +24,24 @@ class SingleArticleView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // title of the article
               SingleArticlePageTitle(title: article.title.toString()),
               const SizedBox(height: 10),
+              // abstract of the article
               SingleArticlePageAbstract(abstract: article.abstract.toString()),
               const SizedBox(height: 10),
+              // by whom and published date of the article
               SingleArticlePageBylinePublishDate(
                 byline: article.byline!,
                 publishedDate: article.published_date!,
               ),
               const SizedBox(height: 10),
+              // article image
               SingleArticlePageImage(media: article.media!),
+              //article source
               SingleArticlePageSource(source: article.source.toString()),
               const SizedBox(height: 10),
+              // article dummy description
               const SingleArticlePageDescription(),
             ],
           ),

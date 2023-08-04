@@ -12,7 +12,7 @@ class EmptyArticlesList extends StatelessWidget {
       children: [
         Text(
           '[ ]',
-          style: AllArticlesSharedController.articlesSubtitleTextStyle(),
+          style: AllArticlesSharedController.articlesTileSubtitleTextStyle(),
         ),
         const Text(
           'There is no news ',

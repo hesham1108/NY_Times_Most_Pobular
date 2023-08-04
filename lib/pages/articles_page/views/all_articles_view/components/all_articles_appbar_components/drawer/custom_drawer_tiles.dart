@@ -17,10 +17,12 @@ class CustomDrawerTiles extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.all(2),
         tileColor: const Color(0xfff1f1f1),
+        // tiles icon
         leading: Padding(
             padding:
                 EdgeInsets.only(right: MediaQuery.sizeOf(context).width * 0.17),
             child: const Icon(Icons.star_border_rounded)),
+        // tiles title
         title: Text(
           title,
           style: const TextStyle(
@@ -30,14 +32,7 @@ class CustomDrawerTiles extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        trailing: iconName == 'home'
-            ? InkWell(
-                child: const Icon(Icons.close),
-                onTap: () {
-                  Scaffold.of(context).closeEndDrawer();
-                },
-              )
-            : null,
+
         onTap: onTap,
       ),
     );

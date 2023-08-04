@@ -30,6 +30,7 @@ class CustomDrawer extends StatelessWidget {
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
+                        // display the drawer tiles
                         CustomDrawerTiles(
                           title: "profile",
                           iconName: 'home',

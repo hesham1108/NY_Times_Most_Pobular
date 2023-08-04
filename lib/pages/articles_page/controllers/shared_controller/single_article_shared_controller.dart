@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SingleArticleSharedController {
+  // chose the suitable text style for every text in the single article page
+
   static TextStyle? titleTextStyle() {
     return const TextStyle(
       fontWeight: FontWeight.w800,

@@ -18,12 +18,18 @@ class AllArticlesList extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // the animated search bar
         const AnimationWidgetForSearch(),
+
+        // the list of the articles
         Expanded(
           child: RefreshIndicator(
             key: _refreshIndicatorKey,
             onRefresh: () async {
+              // reloading the articles on pulling the screen down
               ArticleCubit.get(context).getArticlesFromApi();
+
+              // toggle the appearance of the search bar when reloading articles
               ArticlesAppBarController.get(context, listen: false)
                   .toggleArticlesSearchBar(false);
             },

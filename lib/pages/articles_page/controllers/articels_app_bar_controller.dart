@@ -10,16 +10,22 @@ class ArticlesAppBarController extends ChangeNotifier {
   final GlobalKey<ScaffoldState> _allArticlesScaffoldKey =
       GlobalKey<ScaffoldState>();
 
-  Widget currentAppBarWidget = const SizedBox();
-  bool flag = false;
+  // the current widget that displayed in the animated search bar widget
+  Widget currentSearchBarWidget = const SizedBox();
 
+  // the flag of showing or hiding the search bar
+  bool showHideSearchBarFlag = false;
+
+  // toggle the flag and determining the current widget
   toggleFlag() {
-    flag = flag ? false : true;
-    toggleArticlesSearchBar(flag);
+    showHideSearchBarFlag = showHideSearchBarFlag ? false : true;
+
+    // determining the current widget
+    toggleArticlesSearchBar(showHideSearchBarFlag);
   }
 
   toggleArticlesSearchBar(bool showSearchBar) {
-    currentAppBarWidget = showSearchBar
+    currentSearchBarWidget = showSearchBar
         ? ArticlesSearchInput(onTap: () {
             toggleFlag();
           })
@@ -27,10 +33,12 @@ class ArticlesAppBarController extends ChangeNotifier {
     notifyListeners();
   }
 
+  // the global key of the scaffold of the all articles widget
   GlobalKey<ScaffoldState> getAllArticlesScaffoldKey() {
     return _allArticlesScaffoldKey;
   }
 
+  // displaying the drawer in all articles widget
   displayDrawer() {
     _allArticlesScaffoldKey.currentState!.openDrawer();
   }

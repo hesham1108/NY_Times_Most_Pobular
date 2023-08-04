@@ -16,7 +16,7 @@ class SingleArticleTileSubtitle extends StatelessWidget {
           padding: const EdgeInsets.only(top: 5),
           child: Text(
             byline,
-            style: AllArticlesSharedController.articlesSubtitleTextStyle(),
+            style: AllArticlesSharedController.articlesTileSubtitleTextStyle(),
           ),
         ),
         Padding(
@@ -31,7 +31,8 @@ class SingleArticleTileSubtitle extends StatelessWidget {
               ),
               Text(
                 publishedDate,
-                style: AllArticlesSharedController.articlesSubtitleTextStyle(),
+                style:
+                    AllArticlesSharedController.articlesTileSubtitleTextStyle(),
               ),
             ],
           ),
