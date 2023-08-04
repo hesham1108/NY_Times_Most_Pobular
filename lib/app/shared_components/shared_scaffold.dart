@@ -1,4 +1,5 @@
 import 'package:flutter/Material.dart';
+import 'package:n_y_t_articles/pages/articles_page/views/all_articles_view/components/all_articles_appbar_components/drawer/custom_drawer.dart';
 
 import '../constants/app_constants.dart';
 
@@ -8,11 +9,13 @@ class SharedScaffold extends StatelessWidget {
   final void Function()? leadingAction;
   final Widget? scaffoldBody;
   final bool containDrawer;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
   const SharedScaffold({
     Key? key,
     this.appBarTitle,
     this.leadingAction,
     this.actionsOfAppBar,
+    this.scaffoldKey,
     required this.scaffoldBody,
     required this.containDrawer,
   }) : super(key: key);
@@ -21,7 +24,9 @@ class SharedScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: const Drawer(),
+      key: scaffoldKey,
+      resizeToAvoidBottomInset: true,
+      drawer: const CustomDrawer(),
       appBar: AppBar(
         shadowColor: const Color(0xd3e3e3e3),
         elevation: 5,
@@ -30,19 +35,15 @@ class SharedScaffold extends StatelessWidget {
           appBarTitle ?? '',
           style: TextStyle(
               fontFamily: AppConstants.fontFamily,
-              fontSize: w * 0.055,
+              fontSize: w * 0.045,
               fontWeight: FontWeight.w600,
               color: Colors.white),
         ),
         leading: IconButton(
-          onPressed: containDrawer
-              ? () {
-                  Scaffold.of(context).openDrawer();
-                }
-              : leadingAction ??
-                  () {
-                    Navigator.pop(context);
-                  },
+          onPressed: leadingAction ??
+              () {
+                Navigator.pop(context);
+              },
           icon: Icon(
             containDrawer ? Icons.menu : Icons.arrow_back,
             color: Colors.white,

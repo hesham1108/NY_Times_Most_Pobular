@@ -1,11 +1,13 @@
 import 'package:flutter/Material.dart';
 
+import '../../pages/articles_page/models/article_media_metadata_model/article_media_metadata_model.dart';
 import 'app_constants.dart';
 
 class NetworkImageController {
-  static Widget networkImageWidget(String imgUrl, BuildContext context) {
+  static Widget networkImageWidget(
+      ArticleMediaMetadataModel? mediaMetadata, BuildContext context) {
     return Image.network(
-      imgUrl,
+      mediaMetadata!.url.toString(),
       fit: BoxFit.fill,
       frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
         return child;
@@ -14,38 +16,45 @@ class NetworkImageController {
         if (loadingProgress == null) {
           return child;
         } else {
-          return loadingUntilImageDisplayed();
+          return loadingUntilImageDisplayed(context, mediaMetadata);
         }
       },
       errorBuilder:
           (BuildContext context, Object exception, StackTrace? stackTrace) {
-        return getImageFailed();
+        return getImageFailed(mediaMetadata);
       },
     );
   }
 
-  static Widget loadingUntilImageDisplayed() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+  static Widget loadingUntilImageDisplayed(
+      BuildContext context, ArticleMediaMetadataModel? mediaMetadata) {
+    return Container(
+      width: mediaMetadata!.width,
+      height: mediaMetadata.height,
+      decoration: BoxDecoration(
+          border: Border.all(color: AppConstants.mainColor, width: 1)),
+      padding: const EdgeInsets.all(10),
       child: Center(
         child: AppConstants.loader,
       ),
     );
   }
 
-  static Widget getImageFailed() {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Icon(
-              Icons.emoji_emotions_outlined,
-              color: Colors.red,
-            ),
-            Text('there is no photo..!'),
-          ],
-        ),
+  static Widget getImageFailed(ArticleMediaMetadataModel? mediaMetadata) {
+    return Container(
+      width: mediaMetadata!.width,
+      height: mediaMetadata.height,
+      color: Colors.grey,
+      padding: const EdgeInsets.all(10.0),
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.emoji_emotions_outlined,
+            color: Colors.red,
+          ),
+          Text('there is no photo..!'),
+        ],
       ),
     );
   }

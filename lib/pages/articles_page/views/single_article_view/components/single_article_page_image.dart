@@ -21,7 +21,7 @@ class SingleArticlePageImage extends StatelessWidget {
         child: media!.isEmpty
             ? null
             : NetworkImageController.networkImageWidget(
-                media![0].media_metadata![1].url!,
+                media![0].media_metadata![1],
                 context,
               ),
       ),

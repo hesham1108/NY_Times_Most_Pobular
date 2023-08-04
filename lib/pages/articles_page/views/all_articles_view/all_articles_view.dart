@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:n_y_t_articles/app/constants/app_constants.dart';
 import 'package:n_y_t_articles/app/shared_components/shared_scaffold.dart';
+import 'package:n_y_t_articles/pages/articles_page/controllers/articels_app_bar_controller.dart';
 import 'package:n_y_t_articles/pages/articles_page/controllers/cubits/article_cubit/article_cubit.dart';
 import 'package:n_y_t_articles/pages/articles_page/controllers/shared_controller/all_articles_shared_controller.dart';
-import 'package:n_y_t_articles/pages/articles_page/views/all_articles_view/components/all_articles_list.dart';
-
-import '../../models/article_model/article_model.dart';
 
 class AllArticlesView extends StatefulWidget {
   const AllArticlesView({Key? key}) : super(key: key);
@@ -16,9 +14,7 @@ class AllArticlesView extends StatefulWidget {
 }
 
 class _AllArticlesViewState extends State<AllArticlesView> {
-  bool pageLoading = true;
-  List<ArticleModel> articles = [];
-  // Widget displayedWidget = AppConstants.loader;
+  Widget displayedWidget = AppConstants.loader;
 
   @override
   void initState() {
@@ -30,23 +26,31 @@ class _AllArticlesViewState extends State<AllArticlesView> {
   Widget build(BuildContext context) {
     return SharedScaffold(
       containDrawer: true,
+      scaffoldKey:
+          ArticlesAppBarController.get(context).getAllArticlesScaffoldKey(),
+      leadingAction: () {
+        ArticlesAppBarController.get(context, listen: false).displayDrawer();
+        // Scaffold.of(context).openDrawer();
+      },
       appBarTitle: 'NY Times Most Popular',
-      actionsOfAppBar: AllArticlesSharedController.articlesAppBarActions(),
+      actionsOfAppBar:
+          AllArticlesSharedController.articlesAppBarActions(context),
       scaffoldBody: BlocConsumer<ArticleCubit, ArticleState>(
         listener: (context, state) {
           if (state is GetArticleLoading) {
-            pageLoading = true;
+            displayedWidget =
+                AllArticlesSharedController.getWidgetOnGetArticlesLoading();
           } else if (state is GetArticleSuccess) {
-            pageLoading = false;
-            articles = state.articles!;
+            displayedWidget =
+                AllArticlesSharedController.getWidgetOnGetArticlesSuccess(
+                    state.articles);
           } else if (state is GetArticleFailure) {
-            pageLoading = false;
+            displayedWidget =
+                AllArticlesSharedController.getWidgetOnGetArticlesFailed();
           }
         },
         builder: (context, state) {
-          return pageLoading
-              ? AppConstants.loader
-              : AllArticlesList(articles: articles);
+          return displayedWidget;
         },
       ),
     );

@@ -24,7 +24,7 @@ class SingleArticleTileLeading extends StatelessWidget {
       child: media!.isEmpty
           ? null
           : NetworkImageController.networkImageWidget(
-              media![0].media_metadata![0].url!, context),
+              media![0].media_metadata![0], context),
     );
   }
 }
