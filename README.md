@@ -26,4 +26,24 @@ a simple app to hit the NY Times Most Popular Articles API and show a list of ar
         - when tapping on a tile it will navigate to a single article view page which take the current article as as argument.
 
 # App Screen Shots:
-    ![Articles loading!](https://github.com/hesham1108/NY_Times_Most_Pobular/blob/main/app_screen_shots/while_loading.jpg)
+- Articles loading:
+  
+<a target="blank"><img align="center" src="https://github.com/hesham1108/NY_Times_Most_Pobular/blob/main/app_screen_shots/while_loading.jpg" height="500" width="350" /></a>
+
+- All Articles view:
+   
+<a target="blank"><img align="center" src="https://github.com/hesham1108/NY_Times_Most_Pobular/blob/main/app_screen_shots/all_articles_view.jpg" height="500" width="350" /></a>
+
+- Single Articles View:
+  
+<a target="blank"><img align="center" src="https://github.com/hesham1108/NY_Times_Most_Pobular/blob/main/app_screen_shots/single_article_view.jpg" height="500" width="350" /></a>
+
+- Articles search bar:
+    
+<a target="blank"><img align="center" src="https://github.com/hesham1108/NY_Times_Most_Pobular/blob/main/app_screen_shots/search_bar.jpg" height="500" width="350" /></a>
+
+- Articles Custom Drawer:
+   
+<a target="blank"><img align="center" src="https://github.com/hesham1108/NY_Times_Most_Pobular/blob/main/app_screen_shots/custom_drawer.jpg" height="500" width="350" /></a>
+
+
